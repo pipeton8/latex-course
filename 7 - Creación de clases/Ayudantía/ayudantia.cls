@@ -75,6 +75,7 @@
 \def\Septiembre{Septiembre} 
 \def\Octubre{Octubre} 
 \def\Noviembre{Noviembre}
+\def\Diciembre{Diciembre}
 
 \ifx \month\Enero
 	\def\titulosemestre{Temporada académica de Verano }
@@ -117,6 +118,10 @@
 \fi
 
 \ifx \month\Noviembre
+	\def\titulosemestre{Segundo Semestre de }
+\fi
+
+\ifx \month\Diciembre
 	\def\titulosemestre{Segundo Semestre de }
 \fi
 

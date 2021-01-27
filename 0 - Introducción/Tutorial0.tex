@@ -1,56 +1,30 @@
-% Hoy crearemos nuestra primera presentación en Beamer
-\documentclass[11pt]{beamer}	% Aquí llamamos la clase beamer, podríamos crear nuestra propia clase, con opciones y otras cosas para hacerlo más inteligente
+\documentclass[11pt]{beamer}
 
-% Paquetes %
-% Los paquetes se llaman como a cualquier documento LaTeX, porque básicamente estamos escribiendo un texto de LaTeX
-\usepackage{tutorialLaTeX}	% Incluso, como es de esperar, podemos incorporar nuestro propio paquete (por esto tiene sentido no incorporar las configuraciones propias de una clase dentro de un paquete)
+%: Paquetes
+\usepackage{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
 
-% Para beamer, tenemos que seleccionar un cierto ``tema'', que corresponde a la apariencia de la presentación. Opcionalmente podemos determinar el tipo de letra, el color y la forma en que enumerate e itemize se ven
-% Pueden revisar los colores y temas en forma matricial en el siguiente link:
-% https://hartwork.org/beamer-theme-matrix/
-
-% Los diferentes tipos de letra (los temas y colores también, pero más desordenados) están en
-% http://deic.uab.es/~iblanes/beamer_gallery/individual/Boadilla-default-default.html
-
-% Para definir el tema y el color y el tipo de letra, usamos la siguiente sintaxis
+%: Tema
 \usetheme{Madrid}	
 \usecolortheme{seahorse}
-\usefonttheme{professionalfonts}	% Con este tipo de letra quedan mejor las fórmulas de LaTeX 
+\usefonttheme{professionalfonts}
 
-% Ahora, incluimos el título del texto y nuestro nombre
+%: Argumentos para la portada
 \title{Primera presentación usando Beamer}
 \author{Taller de \LaTeX}
-% Alternativamente también podemos poner la fecha con \date
 
-% Documento %
+%: Documento
 \begin{document}
-% Comenzamos con la portada de nuestra presentación.
-% Portada %
+
 \frame{\titlepage}
 
-% La unidad básica de beamer es el ``frame''.
-% Cada nuevo frame se llama usando la siguiente sintaxis:
-%	\begin{frame}[Opciones]
-%		\frametitle{Título del frame}	
-%		Material del frame
-%	\end{frame}
-
-% Las opciones del frame pueden ser:
-%	- ``t, c, b'' para alineación vertical del contenido (top, center, bottom)
-%	- ``plain'', que elimina el encabezado, el pie y las barras laterales (si hay). Este último es especialmente útil si queremos incluir una imagen de tamaño grande, que se vería extraña si se enmarca con esos elementos.
-%	- ``squeeze'', que comprime todo lo posible los espacios verticales.
-
-% Vale decir que no siempre un ``frame'' es una página del PDF que sale, pero lo veremos más adelante.
-
-% Nuestro primer frame será el índice:
-%	Índice	%
+%: Índice
 \begin{frame}
 	\frametitle{Índice}
 	\tableofcontents
 \end{frame}
 
-% Uso de frames %
-% Las secciones deben ir al comienzo del primer frame que corresponde a esa sección. Recordar que, al igual que en un texto, nosotros debemos preocuparnos de la organización temática, es decir, de las secciones y subsecciones.
 \section{Opciones de frames}
 \begin{frame}
 	\frametitle{\secname}
@@ -58,252 +32,6 @@
 	El frame por defecto tiene el texto alineado verticalmente al centro. Es equivalente a usar la opción \texttt{[c]} al comenzar el frame.
 \end{frame}
 
-\begin{frame}[t]
-	\frametitle{\secname}
-	
-	Pero podríamos alinearlo en la parte superior, usando la opción \texttt{[t]}.
-	
-\end{frame}
-
-\begin{frame}[b]
-	\frametitle{\secname}
-	
-	O en la parte inferior, usando la opción \texttt{[b]}.
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{\secname}	% Podemos 
-	
-	Si además queremos utilizar una imagen muy grande, conviene usar la opción \texttt{plain}, para que beamer se deshaga de todas las barras laterales, superiores e inferiores.
-\end{frame}
-
-\begin{frame}[plain]
-	\begin{center}
-		\includegraphics[scale=0.35]{pobrepatito.jpg}
-	\end{center}
-\end{frame}
-
-% Entorno Block %
-\section{Entorno Block}
-% A continuación veremos uno de los entornos más usados en Beamer, el entorno Block que, como su nombre lo dice,
-% encierra en ``bloques'' el texto
-\begin{frame}
-	\frametitle{\secname}
-	
-	% Comenzamos llamando al entorno
-	\begin{block}{Primer bloque con título}	% Con esto le ponemos título
-	% Dentro de cualquier frame, podemos incorporar nuestros conocidos entornos enumerate e itemize:
-	\begin{itemize}
-		\item Podemos escribir esto.
-		\item Esto
-		\item Y esto 
-	\end{itemize}
-	
-	E incluso podemos escribir \alert{fuera del entorno itemize}.	% \alert es un comando especial de beamer, que escribe en rojo para enfatizar 
-	\end{block}
-	
-	Pero también podemos poner bloques sin título:
-	
-	\begin{block}{}
-		Como este bloque
-	\end{block}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\secname}
-	
-	Podemos también incorporar bloques con significado, que cambian de color. Para ello tenemos dos entornos, el entorno \texttt{alertblock}:
-		\begin{alertblock}{Puede llevar título}
-			y el color del bloque es rojo
-		\end{alertblock}
-	
-	Y también tenemos el entorno \texttt{exampleblock}:
-		\begin{exampleblock}{Que también puede llevar título}
-			y es de color verde
-		\end{exampleblock}
-\end{frame}
-
-% Animaciones %
-\section{Animaciones}
-% en esta sección trataremos los casos donde un frame no es necesariamente una diapositiva.
-	%%	El comando \textttt{pause} %%
-\subsection{El comando \texttt{pause}}
-\begin{frame}
-	\frametitle{\secname : \subsecname}
-	
-	% El comando más simple para animar es ``pause'', el cual genera una diapositiva adicional por cada vez que aparece y que corta la diapositiva justo en donde se le llama
-	\begin{block}{Mostrando el comando \texttt{pause}}
-	\begin{enumerate}
-		\item En la primera diapositiva solo se ve este elemento.	\pause
-		\item Luego se ve este.							\pause
-		\item Y finalmente se ve este.						
-	\end{enumerate}
-	\end{block}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\secname: \subsecname}
-		
-	Pero también es posible que los demás elementos \alert{sí} se vean, usando el comando \texttt{\textbackslash setbeamercovered\{Opción\}}. Este puede llamarse en el preámbulo (si queremos un comportamiento general) o en algún frame en particular (si queremos un comportamiento local). Las opciones son:
-		\begin{itemize}
-			\item \texttt{invisible}: Se encuentra por defecto y deja los demás elementos invisibles.
-			\item \texttt{trasnparent}: El texto se ve casi transparente. Podemos variar la opacidad con el comando \texttt{transparent = X}, con $0 \leq \texttt{X} \leq 100$.
-			\item \texttt{dynamic}: A medida que pasa el tiempo, el texto no descubierto varía su grado de visibilidad.		
-		\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\setbeamercovered{transparent}
-	\frametitle{\secname : \subsecname}
-	
-	Por ejemplo, en el caso anterior, si usamos \texttt{transparent} tenemos:
-		
-	\begin{block}{Mostrando el comando \texttt{\textbackslash pause}}
-	\begin{enumerate}
-		\item En la primera diapositiva solo se ve este elemento.	\pause
-		\item Luego se ve este.							\pause
-		\item Y finalmente se ve este.						
-	\end{enumerate}
-	\end{block}
-\end{frame}
-	
-	%% Rangos para animaciones %% 
-\subsection{Rangos para animaciones}
-\begin{frame}
-	\frametitle{\secname : \subsecname}
-	
-	Para los comandos que veremos a continuación, es posible asignar rangos, para que los elementos se muestren en el orden que nosotros queremos, eliminando la limitación del comando \texttt{\textbackslash pause}.
-	
-	\begin{block}{Sintaxis}
-		La sintaxis para este tipo de comandos es \texttt{\textbackslash Comando<Rango>\{Contenido\}},  donde \texttt{Rango} especifica en qué pasos de la animación se tiene el efecto, por ejemplo:
-			\begin{itemize}
-				\item \texttt{2-} $\rightarrow$ Del paso 2 en adelante.
-				\item \texttt{-3} $\rightarrow$ Hasta el paso 3 (inclusive).
-				\item \texttt{2-5} $\rightarrow$ Del paso 2 al 5 (ambos inclusive).
-				\item \texttt{1-3,5} $\rightarrow$ Del paso1 al 3 y en el 5.
-			\end{itemize}
-	\end{block}
-\end{frame}
-
-	%% El comando \texttt{\textbackslash onslide}  
-\subsection{\texttt{El comando \textbackslash onslide}}
-\begin{frame}
-	\frametitle{\secname : \subsecname}
-	
-	Este comando determina el orden de los elementos, pero hace que estos \alert{sigan ocupando espacio}. Por ejemplo
-	
-	\begin{block}
-		\onslide<1->{Este texto se muestra desde el primer paso}	\\
-		\onslide<2>{Este en el paso 2}						\\
-		\onslide<2-3>{Y este en los pasos 2 y 3}				\\
-		\onslide<4->{Este se muestra a partir del 4}
-	\end{block}
-
-\end{frame}
-
-	%% El comando \texttt{\textbackslash only} 
-\subsection{El comando \texttt{\textbackslash only}}
-\begin{frame}
-	\frametitle{\secname : \subsecname}
-	
-	Este comando funciona de la misma forma que \texttt{\textbackslash onslide} pero con la diferencia que aquí el texto no mostrado \alert{no ocupa espacio}. Este comando puede servir para hacer sustituciones.
-	
-	\begin{block}
-		\onslide<1->{Este texto se muestra desde el primer paso}	\\
-		\only<2>{Este solo se muestra en el paso 2}
-		\onslide<3->{Este desde  el 3 en adelante}	\\
-		\onslide<4>{Esto en el cuarto}
-	\end{block}
-
-\end{frame}
-
-	%% Efectos de animación incrementales %%
-\subsection{Efectos de animación incrementales}
-\begin{frame}
-	\frametitle{\secname : \subsecname}
-	
-	Podemos usar efectos de animación usando rangos dentro de los mismos entornos \texttt{itemize} y \texttt{enumerate}. La sintaxis es la siguiente:
-		\begin{block}{}
-		\begin{itemize}
-			\item<1-> Primer item.
-			\item<2-> Segundo item.
-			\item<3-> Tercer item.
-		\end{itemize}
-		\end{block}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\secname : \subsecname}
-	
-	Sin embargo, hay una manera equivalente para ese orden en específico:
-		\begin{block}{}
-		\begin{itemize}[<+->]
-			\item Primer item.
-			\item Segundo item.
-			\item Tercer item.
-		\end{itemize}
-		\end{block}
-\end{frame}
-
-\begin{frame}
-	\setbeamercovered{transparent}
-	
-	\frametitle{\secname : \subsecname}
-	
-	Tal vez nos gustaría que el elemento activo aparezca resaltado:
-		\begin{block}{}
-		\begin{itemize}[<+- | alert@+>]
-			\item Primer item.
-			\item Segundo item.
-			\item Tercer item.
-		\end{itemize}
-		\end{block}
-	
-	También es posible este efecto en el uso de rangos, con \texttt{\textbackslash alert<Rango>\{Texto\}}.
-\end{frame}
-
-\begin{frame}
-	\frametitle{\secname : \subsecname}
-	
-	\begin{block}{}
-	Es posible usar, en lugar de \texttt{alert} otros comandos como
-		\begin{itemize}
-			\item \texttt{uncover}: es equivalente a \texttt{onslida} y está por defecto.
-			\item \texttt{only}: el mismo que vimos antes.
-			\item \texttt{visible}: Texto invisible si no es mostrado.
-		\end{itemize}
-	\end{block}
-	
-	Por ejemplo
-		\begin{itemize}[<+- | only@+>]
-			\item Primer item.
-			\item Segundo item.
-			\item Tercer item.
-		\end{itemize}
-\end{frame}
-
-	%% Otros comandos con efectos de animación %%
-\begin{frame}
-	\frametitle{\secname : \subsecname}
-	
-	\begin{block}{}
-	Los siguientes comandos admiten efectos de animación
-		\begin{itemize}
-			\item \texttt{\textbackslash textbf<Rango>\{Texto\}}
-			\item \texttt{\textbackslash color<Rango>\{Color\}} (o \texttt{\textbackslash textcolor<Rango>\{Color\}\{Texto\}})
-			\item \texttt{\textbackslash includegraphics<Rango>[Opciones]\{archivo\}}
-		\end{itemize}
-	\end{block}
-	
-	Como por ejemplo
-		\begin{itemize}
-			\item<1-> \textbf<1>{Primer item.}
-			\item<2-> \textcolor<2>{blue}{Segundo item.}
-			\item<3-> Tercer item \includegraphics<4>[height = 4mm]{tick.png}
-		\end{itemize}
-	
-\end{frame}
 
 \end{document}
 
