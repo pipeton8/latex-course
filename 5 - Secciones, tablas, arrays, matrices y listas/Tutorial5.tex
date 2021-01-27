@@ -1,0 +1,143 @@
+% Comencemos un código nuevo para trabajar con los nuevos elementos. Aquí necesitaremos algunos paquetes nuevo y otros los dejaremos ir. Tampoco necesitaremos entornos
+\documentclass{article}
+
+% Paquetes %
+\usepackage[utf8]{inputenc} 
+\usepackage[spanish]{babel}
+\usepackage{mathtools, amsfonts, amsmath, amsthm, amssymb}
+\usepackage{setspace}
+
+% Para este tutorial usaremos el siguiente paquete:
+\usepackage{enumerate}
+
+% Márgenes %
+\oddsidemargin = 0.3 cm
+\textwidth = 17 cm
+\textheight = 24 cm
+\headsep = 0.8 cm
+\hoffset = -1 cm
+\voffset = -2 cm
+\spacing{1.4}
+
+% Documento %
+\begin{document}
+% Para ordenar un texto, necesitamos crear los títulos, subtítulos, subsubtítulos, etc. LaTeX tiene una manera directa de crear estos:
+%	\section{...}
+%	\subsection{...}
+%	\subsubsection{...}
+%	etc.
+
+% Donde en cada uno se reemplazan los puntos suspensivos con el título deseado. Estos vienen automáticamente numerados, si queremos que no tengan numeración, hay que agregar un * antes de los { }. Haremos esto último a lo largo de este tutorial para que sea más explicativo:
+\section*{Tablas}
+Hagamos una tabla que resuma lo que hemos aprendido hasta ahora:
+% Las tablas usan el entorno tabular, el cual tiene la siguiente sintaxis:
+%	\begin{tabular}{...}
+%	\end{tabular}
+
+% El argumento que va inmediatamente después de comenzar el entorno tiene dos funciones:
+% 	1) determinar la cantidad de columnas que tiene la tabla
+% 	2) determinar en cada columna si el texto va centrado, alineado a la izquierda o a la derecha
+% Para esto, para cada columna escribimos c, si queremos el texto centrado, l si lo queremos a la izquierda o r si lo queremos a la derecha.
+% Dentro de la tabla, usamos & para cambiar de columna y \\ para pasar a la fila siguiente luego de escribir todas las columnas. LaTeX tirará un error si no hay suficientes & como para hacer sentido a la cantidad de columnas. 
+% Si además queremos separadores, entre cada letra incorporamos |, para una separación simple o || para una separación doble. Además, si queremos una linea horizontal, debemos, justo después de \\ incluir \hline.
+	\begin{center}	% Las tablas no están centradas por defecto, así que lo forzamos con este entorno
+	\begin{tabular}{c | c | c}
+		Tutorial	&	Título								&	Contenidos	\\ \hline
+		1		&	Creación de documentos					&	Clases de documentos, paquetes, escritura de texto simple	\\ \hline
+		2		&	Escritura de un texto simple				&	Márgenes, entornos, escritura de un texto complejo				\\ \hline
+		3		&	Incorporar imágenes y una portada			&	Incorporación de portadas, manejo de imágenes	\\ \hline
+		4		&	Crear funciones y un nuevo entorno			&	Creación de funciones y entornos con numeración heredada	\\ \hline
+		5		&	Secciones, tablas, arrays, matrices y listas	&	Uso de tablas y arrays, escritura de matrices y uso de listas
+	\end{tabular}
+	\end{center}
+
+\section*{Arrays}
+Por su parte, los arrays son como tablas en modo matemático. Como su nombre lo dicen, son un \textit{arreglo} (array, en inglés) y básicamente son tablas sin divisiones. Son un entorno que solo puede usarse entre ``\$\$\$\$'', si no, no funcionan. Un ejemplo clásico de un array puede ser escribir una función:
+	$$\begin{array}{ccccl}	% Misma sintaxis de tabular
+		f	&	:	&	A	&	\to		&	B	\\
+			&		&	x	&	\mapsto	&	f(x)
+	\end{array}$$
+
+Este arreglo permite escribir una función cómodamente y con una lectura muy fácil. Observar que la última columna está alineada a la izquierda, esto para asegurar que si la escritura de $f(x)$ fuera muy larga, entonces queda más ordenado.
+
+\section*{Listas}
+Ahora aprendamos a usar listas. Hay dos tipos: numeradas y no numeradas. 
+
+\subsection*{Listas numeradas}
+Las listas numeradas se llaman con el entorno \textit{enumerate}, mientras que las no numeradas se llaman con el entorno \textit{itemize}. Veamos los ejemplos
+	\begin{enumerate}
+		\item Primer elemento de la lista numerada.
+		\item Segundo elemento de la lista numerada.		
+	\end{enumerate}
+
+La numeración es por defecto, con números arábigos seguidos por un punto. Podemos elegir la numeración que más nos guste: letras, números arábigos o números romanos, seguidos de lo que nos plazca. Para ello, el paquete \textit{enumerate} que incluimos nos da una fórmula muy fácil: justo después de iniciar el entorno, incluya ``[...]'', y reemplace los puntos suspensivos por lo que usted quiere. Veamos la misma lista anterior pero con esta variación:
+	\begin{enumerate}[I)]
+		\item Primer elemento de la lista numerada.
+		\item Segundo elemento de la lista numerada.		
+	\end{enumerate}
+
+O también
+	\begin{enumerate}[a)]
+		\item Primer elemento de la lista numerada.
+		\item Segundo elemento de la lista numerada.		
+	\end{enumerate}
+
+Podemos crear otras variaciones, como que los ``números'' queden en cursiva o negrita, como en los siguientes ejemplos:
+	\begin{enumerate}[\it a)]
+		\item Primer elemento de la lista numerada.
+		\item Segundo elemento de la lista numerada.		
+	\end{enumerate}
+
+O
+	\begin{enumerate}[\bf a)]
+		\item Primer elemento de la lista numerada.
+		\item Segundo elemento de la lista numerada.		
+	\end{enumerate}
+
+Finalmente, podemos crear numeraciones más complejas, como en el siguiente ejemplo:
+	\begin{enumerate}[\bf {Paso} 1)]
+		\item Primer elemento de la lista numerada.
+		\item Segundo elemento de la lista numerada.		
+	\end{enumerate}
+
+Observar que escribimos ``Paso'' entre \{ \} pues de esta forma, \textit{enumerate} entiende que aquello no debe usarse para enumerar.
+
+\subsection*{Listas no numeradas}
+Ahora, revisemos las listas no numeradas. El entorno a utilizar es \textit{itemize}:
+	\begin{itemize}
+		\item Primer elemento de la lista no numerada.
+		\item Segundo elemento de la lista no numerada.
+		\item Tercer elemento de la lista no numerada.
+	\end{itemize}
+
+Nuevamente, este símbolo es el que está por defecto. Las listas no numeradas son más flexibles para editarlas. Para hacerlo, luego de cada \textit{item} se debe agregar [...], reemplazando los puntos suspensivos por el símbolo deseado, como en el siguiente ejemplo 
+	\begin{itemize}
+		\item[$\bullet$] Primer elemento de la lista no numerada.
+		\item[$\triangle$] Segundo elemento de la lista no numerada.
+		\item[$-$] Tercer elemento de la lista no numerada.
+	\end{itemize}
+	
+\section*{Matrices}
+Vamos ahora al último objetivo de este tutorial: usar matrices. Las matrices en LaTeX se manejan como entornos (con la misma sintaxis de \textit{array}) que solo se pueden iniciar en modo matemático (entre \$\$). Hay 3 tipos de matrices
+	\begin{itemize}
+		\item bmatrix: Matrices entre paréntesis cuadrados.
+		\item pmatrix: Matrices entre paréntesis redondos.
+		\item vmatrix: Matrices entre paréntesis rectos.
+	\end{itemize}
+
+A continuación vemos un ejemplo de cada una
+	$$	\begin{pmatrix}
+			1	&	2	\\
+			3	&	4
+		\end{pmatrix}, \quad % este comando funciona como una tabulación en el texto final, \qquad son dos tabulaciones
+		\begin{bmatrix}
+			1	&	2	\\
+			3	&	4
+		\end{bmatrix}, \quad
+		\begin{vmatrix}
+			1	&	2	\\
+			3	&	4
+		\end{vmatrix}
+	$$
+\end{document}
+

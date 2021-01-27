@@ -1,0 +1,289 @@
+ \NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{felipito}
+
+%Tipo de letra y codificación %
+\RequirePackageWithOptions{hyperref}
+\RequirePackageWithOptions{fontenc}
+\RequirePackage[spanish]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackageWithOptions{color}
+\RequirePackageWithOptions{xcolor}
+
+% Paquetes %
+\RequirePackage{etoolbox}
+\RequirePackage{mathtools}
+\RequirePackage{amsfonts, amsmath, amsthm, amssymb}
+\RequirePackage{graphicx, wrapfig, float}
+\RequirePackage{epstopdf}
+\RequirePackage{enumerate}
+\RequirePackage{setspace}
+\RequirePackage{changepage}
+\RequirePackage{eufrak}
+\RequirePackage{mathrsfs}
+\RequirePackage[all]{xy}
+\RequirePackage{multicol}
+\RequirePackage{tikz}
+	\usetikzlibrary{decorations.pathmorphing}
+	\usetikzlibrary{decorations.markings}
+	\usetikzlibrary{arrows.meta,bending}
+	\usetikzlibrary{decorations.pathreplacing}
+\RequirePackage{cleveref}	
+\RequirePackage{cancel}
+\RequirePackage{bbm}
+\RequirePackage{scalerel,stackengine}
+\RequirePackage{mathabx}
+\RequirePackage{xstring}
+\RequirePackage{faktor}
+\RequirePackage{slashbox, multirow}
+
+% Ambiente de teoremas %
+\theoremstyle{plain}
+	\newtheorem{prop}{Proposición}[section]
+	\newtheorem{lem}{Lema}[section]
+	\newtheorem{teo}{Teorema}[section]
+	\newtheorem{cor}{Corolario}[teo]
+	\newtheorem{corp}{Corolario}[prop]
+	\newtheorem{corl}{Corolario}[lem]
+	\newtheorem*{teo*}{Teorema}
+	\newtheorem*{lem*}{Lema}
+	\newtheorem*{prop*}{Proposición}
+	\newtheorem*{cor*}{Corolario}
+
+\theoremstyle{definition}
+	\newtheorem{defn}{Definición}[section]
+	\newtheorem{proper}{Propiedad}[section]	
+	\newtheorem{propers}{Propiedades}[section]
+	\newtheorem{ex}{Ejemplo}[section]
+		\AtEndEnvironment{ex}{\begin{flushright} \scalebox{1.5}{$\star$} \end{flushright}}
+	\newtheorem{exs}{Ejemplos}[section]
+	\newtheorem{ej}{Ejercicio}[section]
+	
+	\newtheorem{obs}{Observación}[section]
+	\newtheorem{obst}{Observación}[teo]
+	\newtheorem{obsc}{Observación}[cor]
+	\newtheorem{obscl}{Observación}[corl]
+	\newtheorem{obscp}{Observación}[corp]
+	\newtheorem{obsl}{Observación}[lem]
+	\newtheorem{obsd}{Observación}[defn]
+	\newtheorem{obspr}{Observación}[proper]
+	\newtheorem{obsp}{Observación}[prop]
+	\newtheorem{obsej}{Observación}[ej]
+	\newtheorem{obsex}{Observación}[ex]
+	\newtheorem*{obs*}{Observación}
+	\newtheorem*{not*}{Notación}
+	\newtheorem*{nota*}{Nota}
+	\newtheorem*{defn*}{Definición}
+	\newtheorem*{proper*}{Propiedad}	
+	\newtheorem*{propers*}{Propiedades}
+	\newtheorem*{ex*}{Ejemplo}
+	\newtheorem*{ej*}{Ejercicio}
+
+%%	Cambios de símbolos e itemize	%%
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
+
+\renewcommand{\labelitemi}{$-$}
+
+%% Funciones %%
+
+	%	Vectores y matrices	%
+\newcommand{\colvec}[1]{					%
+	\begin{pmatrix}							%
+		#1								%
+	\end{pmatrix}							%
+}
+	
+	
+\newcommand{\idM}{\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}}
+\newcommand{\idMM}{\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+
+	%	Conjuntos y funciones	%
+\newcommand{\conj}[2]{\left\{ #1 \  \big{|} \	 #2 \right\}}
+\newcommand{\repr}[2]{\left\langle #1 \  \big{|} \	 #2 \right\rangle}
+\newcommand{\pair}[1]{\left\langle#1\right\rangle}
+\newcommand{\func}[5]{\begin{array}{cccl}
+						#1:	&	#2	&	\to		&	#3	\\
+							&	#4	&	\mapsto	&	#5	
+					\end{array}}
+\newcommand{\twodef}[4]{\left\{ \begin{aligned}
+						&#1	&&\text{si } #2	\\
+						&#3	&&\text{si } #4
+					\end{aligned} \right. }
+	
+	%	Derivadas e integrales	%
+\newcommand{\Dfdx}[2]{\frac{\mathrm{D}#1}{\mathrm{d}#2}}
+\newcommand{\dfdx}[3][1]{		%
+	\frac{						%
+		\ifnum#1=1			%				
+			\mathrm{d}#2		%			
+		\else					%	
+			\mathrm{d}^{#1}#2	%
+		\fi					%
+	}{						%
+		\ifnum#1=1			%
+			\mathrm{d}#3		%
+		\else					%
+			\mathrm{d}#3^{#1}	%
+		\fi					%
+	}						%
+}
+
+\newcommand{\pfpx}[3][1]{					%
+	\frac{									%
+		\newcount\grado					%
+			\@for\exponente:=#1\do{			%
+				\advance\grado by\exponente	%
+			}							%
+			\ifnum\the\grado=1				%				
+					\partial #2				%			
+				\else						%	
+					\partial^{\the\grado}#2	%
+			\fi							%
+	}{													%
+		\newcount\numvariable								%
+		\newcount\numexponente								%
+		\@for\variable:=#3\do{								%
+				\@for\exponente:=#1\do{						%
+					\ifnum\the\numexponente=\the\numvariable	%
+						\ifnum\exponente=1					%
+							\partial\variable					%
+						\else								%
+							\partial\variable^{\exponente}		%
+						\fi \fi								%
+				\advance\numexponente by1					%
+				}										%
+				\numexponente=0							%
+				\advance\numvariable by1						%
+		}
+	}
+}
+
+	%	Tipos de letra	%
+\newcommand{\grad}{\mathrm{grad\ }}
+\newcommand{\mcd}[2]{\mathrm{mcd}(#1, #2)}
+\newcommand{\mcm}{\mathrm{mcm}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\tr}{\mathrm{Tr} \,}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Gal}{\mathrm{Gal}}
+\newcommand{\Isom}{\mathrm{Isom}}
+\newcommand{\interior}{\mathrm{int}}
+\newcommand{\Dom}{\mathrm{Dom\ }}
+\newcommand{\Rec}{\mathrm{Rec\ }}
+\newcommand{\Cam}{\mathrm{Cam\ }}
+\newcommand{\sgn}{\mathrm{sign}}
+\newcommand{\car}[1]{\mathrm{char}(#1)}
+\newcommand{\gr}[1]{\mathrm{gr}(#1)}
+\newcommand{\sff}{\mathrm{II}}
+\newcommand{\diam}{\mathrm{diam}\ }
+\renewcommand{\ker}{\mathrm{Ker}\ }
+\newcommand{\im}{\mathrm{Im}\, }
+\newcommand{\re}{\mathrm{Re}\, }
+\newcommand{\codim}{\mathrm{codim\ }}
+\newcommand{\adj}{\mathrm{adj}\, }
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\sesgo}{\mathrm{Sesgo}}
+\newcommand{\ecm}{\mathrm{ECM}}
+\newcommand{\ent}{\mathrm{Ent}}
+\newcommand{\arcctg}{\mathrm{arcctg\ }}
+\newcommand{\Arg}{\,\mathrm{Arg}\ }
+\newcommand{\Div}{\mathrm{div} \,}
+\newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\dist}{\mathrm{dist}}
+
+\newcommand{\cl}[1]{\mathcal{#1}}
+\newcommand{\frk}[1]{\mathfrak{#1}}
+\newcommand{\FX}[1]{\mathfrak{F}(#1)}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\CX}[1]{\mathscr{C}(#1)}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\CL}{\mathcal{L}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\clx}[1]{\mathcal{#1}}
+\newcommand{\rmx}[1]{\mathrm{#1}}
+
+\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+
+	%	Referencias y link en el texto	%
+\newcommand{\reflink}[1]{\hyperlink{#1}{\Cref{#1}}}
+\newcommand{\reftarget}[1]{\label{#1} \hypertarget{#1}}
+
+	%	Para demostraciones de implicancias	%
+\newcommand{\iffdem}[1]{\noindent $\begin{array}{c|} #1 \\ \hline \end{array}$ \vspace{1ex} \\ \indent}
+
+	%	Misceláneos	%
+\newcommand{\paratodo}{\forall\ }
+\newcommand{\existe}{\exists\ }
+\newcommand{\noexiste}{\not\exists\ }
+
+\newcommand{\tiende}[1]{\xrightarrow{#1}}
+
+
+\renewcommand{\nequiv}{\not\equiv}
+\newcommand{\normal}{\unlhd}
+\newcommand{\injects}{\xhookrightarrow{}}
+
+\newcommand{\uno}{\mathbbm{1}}
+
+\newcommand{\pvi}[2]{\left\{ \begin{aligned} &#1 \\ &#2 \end{aligned} \right.}
+
+\newcommand{\grados}{${}^{\circ}$}
+
+\newcommand{\asimsim}{\mathrel{\dot{\sim}}}
+
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+
+\newcommand{\iid}{\overset{\mathrm{i.i.d}}{\sim}}
+
+\newcommand{\dado}[2]{\left(#1 \, | \, #2\right)}
+
+\newcommand{\laplace}[1]{\frac{\partial^{2}#1}{\partial x_{1}} + \frac{\partial^{2}#1}{\partial x_{2}}}
+
+	%	Para lógica	%
+\renewcommand{\Dashv}{
+	\mathrel{\text{\reflectbox{$\vDash$}}}
+}
+
+\newcommand{\vDashv}{
+	\mathrel{
+		\text{
+			\ooalign{$\vDash$\cr\reflectbox{$\vDash$}\cr}
+    		}
+  	}
+}
+
+
+	%	Really wide hat	%
+\stackMath
+\newcommand\reallywidehat[1]{%
+	\savestack{\tmpbox}{\stretchto{%
+		\scaleto{%
+    			\scalerel*[\widthof{\ensuremath{#1}}]{\kern-.6pt\bigwedge\kern-.6pt}%
+   		{\rule[-\textheight/2]{1ex}{\textheight}}%WIDTH-LIMITED BIG WEDGE
+ 		 }{\textheight}% 
+	}{0.5ex}}%
+	\stackon[1pt]{#1}{\tmpbox}%
+}
+
+	%	Entornos	%
+\newenvironment{casos}{\begin{enumerate}[\bfseries {Caso }1]}{\end{enumerate}}
+\newenvironment{afirmacion}{\begin{enumerate}[\bfseries {Afirmación }1]}{\end{enumerate}}
+\newenvironment{ejercicios}{\begin{enumerate}[\bfseries {Ejercicio }1]}{\end{enumerate}}
+
+	%	Otras cosas	%
+\everymath{\displaystyle}
+
+
+\endinput

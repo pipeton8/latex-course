@@ -1,0 +1,82 @@
+\RequirePackage[patch]{kvoptions}
+
+% Tipo de documento %
+\documentclass[duedate = 11 de Septiembre, 
+			ramo = An\'alisis Funcional, 
+			doctype = Tarea 1
+			semester = 2,
+			year = 2017]{tarea}
+
+% Paquetes %
+\usepackage{felipitox}
+
+%%% Documento %%%
+\begin{document}
+
+% Portada %
+\dotitlepage
+
+% Contenido %
+\pagestyle{empty}
+
+%P2%
+\section*{Problema 2}
+Sean
+	$$C_{b}(\R) := \conj{x \in C(\R)}{\sup_{t \in \R} |x(t)| < \infty}, \qquad
+		E := \conj{x \in C_{b}(\R)}{x(k) = 0, \, k \in \Z}$$
+		
+\begin{enumerate}[(i)]
+	%2.a%
+	\item Demuestre que $E$ es subespacio cerrado de $C_{b}(\R)$.
+	
+	\begin{proof}[Solución] Sea $\{x_{n}\}_{n \in \N} \subset E$ sucesión convergente en $C_{b}(\R)$, es decir,
+		$$\lim_{n \to \infty} x_{n} = x \in C_{b}(\R)$$
+	
+	Queremos mostrar que $x \in E$. Sea $k \in \Z$. Por convergencia, dado $\epsilon > 0$ existe $N = N(\epsilon) \in \N$ tal que
+		$$\|x - x_{N}\|_{C_{b}} = \sup_{t \in \R} |x(t) - x_{N}(t)| < \epsilon$$
+	
+	en particular, 
+		$$|x(k) - x_{N}(k)| < \epsilon$$ 
+	
+	y como $x_{N} \in E$, $x_{N}(k) = 0$, luego 
+		$$|x(k)| < \epsilon$$
+	
+	Como este tratamiento vale para todo $\epsilon > 0$ (el valor de $N(\epsilon)$ puede crecer, pero $x_{N(\epsilon)}(k) = 0$ para todo $\epsilon$), debe tenerse que $x(k) = 0$.	\\
+	
+	Luego, como $x \in C_{b}(\R)$ y $x(k) =0 $ para todo $k \in \Z$ (porque $k$ era arbitrario), entonces $x \in E$ y concluimos que $E$ es cerrado.
+	\end{proof}
+	
+	\newpage
+	%2.b%
+	\item Determine si $E$ es separable o no. Justifique su respuesta.
+	
+	\begin{proof}[Solución] No es separable. En efecto, supongamos que existe $D$ denso numerable. Para cada $r \in \R$, con expansión decimal $r = a_{0}.a_{1}a_{2}\ldots$ (si $r \in \Q$ consideramos la expansión decimal periódica) definimos $f_{r}$ por
+		$$f_{r}(x) = \twodef{0}{x = k \in \Z}
+						{a_{k}}{x = k + \frac{1}{2}, k \in \Z}$$
+					
+	y unimos estos puntos con rectas. Luego, por construcción $f_{r}$ es continua en $\R$, $f(k) = 0$ para cada $k \in \Z$ y
+		$$\sup_{t \in \R} |f_{r}(t)| \leq \max\left\{|a_{0}|,9\} < \infty$$
+	
+	por lo que $f_{r} \in E$. Notar además que, si $r_{1} \neq r_{2}$, entonces difieren en algún dígito de su expansión decimal, de manera que
+		$$\|f_{r_{1}} - f_{r_{2}}\|_{C_{b}(\R)} \geq 1$$
+	
+	Entonces, dado $\epsilon \in \left(0,\frac{1}{2}\right)$, sea $x_{r} \in D$ tal que
+		$$\|x_{r} - f_{r}\|_{C_{b}(\R)} < \epsilon $$
+		
+	Si $r_{1} \neq r_{2}$, sucede que $x_{r_{1}} \neq x_{r_{2}}$ pues por lo anterior
+		\begin{align*}
+			1	&\leq		\|f_{r_{1}} - f_{r_{2}}\|_{C_{b}(\R)}	\\
+				\leq		\|f_{r_{1}} - x_{r_{1}}\|_{C_{b}(\R)} + \|x_r_1 - x_{r_{2}}\|_{C_{b}(\R)} + \|x_{r_{2}} - f_{r_{2}}\|_{C_{b}(\R)}
+				&<		2\epsilon + \|x_{r_{1}} - x_{r_{2}}\|_{C_{b}(\R)}
+		\end{align*}
+	
+	De donde
+		$$\|x_{r_{1}} - x_{r_{2}}\|_{C_{b}(\R)} > 1- 2\epsilon > 0$$
+		
+	pues $\epsilon \in \left(0,\frac{1}{2})$. Luego,
+		$$\{x_{r}: r \in \R\} \susbet D$$
+	
+	y es un conjunto no numerable (pues las $x_{r$ son distintas entre ellas y están indexadas por reales), lo que contradice que $D$ sea numerable.
+
+\end{enumeraet}
+\end{document}

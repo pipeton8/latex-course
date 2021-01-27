@@ -1,0 +1,85 @@
+% Consideremos el código de la sección 4 y mejorémoslo
+\documentclass{article}
+
+% Paquetes %
+\usepackage{setspace}
+\usepackage{tutorialLaTeX}	% Incorporamos nuestro nuevo paquete con la sintaxis de paquetes usual.
+
+% Márgenes %
+\oddsidemargin = 0.3 cm
+\textwidth = 17 cm
+\textheight = 24 cm
+\headsep = 0.8 cm
+\hoffset = -1 cm
+\voffset = -2 cm
+\spacing{1.4}
+
+% Está un poco mejor, pero no tanto. Todavía molestan los márgenes y el texto de la portada aún ocupa mucho espacio. Eso lo mejoraremos con una clase.
+
+% Documento %
+\begin{document}
+
+\begin{titlepage}
+	\begin{minipage}{2.5cm}
+		\includegraphics[width=2cm]{logouccolor.png}
+	\end{minipage}
+	\begin{minipage}{13 cm}
+		\begin{flushleft}
+   			\noindent\large{\sc
+				Pontificia Universidad Católica de Chile \\ 
+		     		Facultad de Matemáticas \\ 
+		     		Departamento de Matemáticas \\ 
+				Segundo semestre 2017
+		     	}
+		\end{flushleft}
+	\end{minipage}
+	
+	% Título %
+\begin{center}
+	\vspace*{\fill}
+		\Huge\textbf{Primera portada}	\\
+		\Huge\textbf{taller de \LaTeX}	\\
+		\LARGE{Yo mismo} \\
+	\vspace*{\fill}
+		
+	\vfill
+		
+	\Large{Profesor: No importa por ahora}
+\end{center}
+\end{titlepage}
+
+\begin{teo} Demuestre que si $1 \leq p \leq q \leq \infty$, entonces
+	$$\|x\|_{\ell^{q}} \leq \|x\|_{\ell^{p}}$$
+	
+En particular $\ell^{p} \subset \ell^{q}$.
+\end{teo}
+
+\begin{proof} El caso $q = \infty$ es claro:
+	$$\|x\|_{\ell^{\infty}} 
+		= 	\sup_{j \in \N} |x_{j}|
+		= 	\left(\sup_{j \in \N} |x_{j}|^{p}\right)^{1/p} 
+		\leq	\left(\sum_{j \in \N} |x_{j}|^{p}\right)^{1/p} = \|x\|_{\ell^{p}}
+	$$
+
+Además, si $p = q$ el resultado es directo. Consideremos entonces $1 \leq p < q < \infty$, tenemos que
+	\begin{align*}
+		\|x\|_{\ell^{q}}^{q}
+			&=		\sum_{j \in \N} |x_{j}|^{q}	\\
+			&=		\sum_{j \in \N} |x_{j}|^{p} |x_{j}|^{q-p}	\\
+			&\leq		\|x\|^{q-p}_{\ell^{\infty}} \sum_{j \in \N} |x_{j}|^{p}	\\
+			&=		\|x\|^{q-p}_{\ell^{\infty}} \|x\|_{\ell^{p}}^{p}	\\
+			&\leq		\|x\|^{q-p}_{\ell^{p}} \|x\|_{\ell^{p}}^{p}	\\
+			&=		\|x\|_{\ell^{p}}^{q}		 
+	\end{align*}
+
+De donde se obtiene el resultado.
+\end{proof}                                          
+
+\begin{obst} Hemos visto que $x = \{x_{n}\}_{n \in \N}$ definida por
+	$$x_{n} = \twodef	{\frac{1}{n-1}}{n > 1}
+					{0}{n = 1}$$
+
+pertenece a $\ell^{2}$, por lo que por el teorema anterior, pertenece a $\ell^{q}$ para todo $q \geq 2$.
+\end{obst}
+\end{document}
+

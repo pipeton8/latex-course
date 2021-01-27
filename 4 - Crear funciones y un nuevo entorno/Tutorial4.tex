@@ -1,0 +1,123 @@
+% Consideremos el código del teorema anterior con la portada y mejorémoslo
+\documentclass{article}
+
+% Paquetes %
+\usepackage[utf8]{inputenc} 
+\usepackage[spanish]{babel}
+\usepackage{mathtools, amsfonts, amsmath, amsthm, amssymb}
+\usepackage{setspace}
+\usepackage{graphicx}
+
+% Márgenes %
+\oddsidemargin = 0.3 cm
+\textwidth = 17 cm
+\textheight = 24 cm
+\headsep = 0.8 cm
+\hoffset = -1 cm
+\voffset = -2 cm
+\spacing{1.4}
+
+% Hay veces que escribir demasiadas veces un comando largo puede ser tedioso y además puede ser lento hacerlo. Por ejemplo, para escribir los números naturales, escribir \mathbb{N} toma tiempo, sobre todo si uno se equivoca. Para ello nos gustaría escribir una función, que se llame de manera más corta. La forma de crear funciones es la siguiente
+ %	\newcommand{\nuevonombre}{que hace la funcion}
+ 
+% En el caso del ejemplo de \mathbb{N} podemos crear la siguiente función
+\newcommand{\N}{\mathbb{N}}
+
+% Ahora, cada vez que escribamos \N, LaTeX entiende que estamos escribiendo \mathbb{N}. Observar que es como abreviar, por lo que necesitamos estar en modo matemático para usar esta función
+
+% También es posible crear funciones que acepten argumentos, para crearlas se usa el siguiente formato
+%	\newcommand{\nombrefuncion}[numerodeargumentos]{que hace la funcion}
+
+% En la parte ``que hace la función'', podemos referenciar los argumentos por ``#n'', donde n es el número de argumento. Veamos el siguiente ejemplo:
+\newcommand{\twodef}[4]{\left\{ \begin{aligned}
+						&#1	&&\text{si } #2	\\
+						&#3	&&\text{si } #4
+					\end{aligned} \right. }
+
+% Vale la pena notar que el entorno aligned es equivalente al align, pero este nuevo entorno puede combinarse en modo matemático (es decir, para cosas entre $$) de manera que se pueda complementar con más texto.
+					
+% Esta función permite escribir funciones de dos ramas. Como podemos ver, recibe 4 argumentos, el primero es la primera rama de la función, el segundo, la condición de esa rama. El tercero y el cuarto se definen de manera similar. Para llamar a esta función en el texto tendremos que escribir
+%	\twodef{primera rama}{condicion primera rama}{segunda rama}{condicion segunda rama}
+
+% Por un tema de orden del código y mejor entendimiento de lo que escribimos, también podemos escribir
+%	\twodef	{primera rama}{condicion primera rama}
+%			{segunda rama}{condicion segunda rama}
+
+% Esta manera de escribir imita lo que uno ve en el resultado y tiene una lectura mucho mejor. 
+
+% Entornos %
+\newtheorem{teo}{Teorema}
+
+% Queremos probar la función que creamos después de la demostración del teorema y lo haremos en un nuevo entorno, uno de una observación. Nos gustaría que la observación se enumerara según el teorema, para ello debemos decirle a LaTeX que lo haga. Esto lo logramos de la siguiente manera
+\newtheorem{obst}{Observación}[teo]
+
+% La primera parte, \newtheorem{obst}{Observación}, es la misma sintaxis para el teorema, solo que ahora queremos que diga ``Observación'' y no ``Teorema''. La parte final, [teo], le dice a LaTeX que queremos que este entorno siga la numeración del teorema.
+
+% Documento %
+\begin{document}
+
+\begin{titlepage}
+	\begin{minipage}{2.5cm}
+		\includegraphics[width=2cm]{logouccolor.png}
+	\end{minipage}
+	\begin{minipage}{13 cm}
+		\begin{flushleft}
+   			\noindent\large{\sc
+				Pontificia Universidad Católica de Chile \\ 
+		     		Facultad de Matemáticas \\ 
+		     		Departamento de Matemáticas \\ 
+				Segundo semestre 2017
+		     	}
+		\end{flushleft}
+	\end{minipage}
+	
+	% Título %
+\begin{center}
+	\vspace*{\fill}
+		\Huge\textbf{Primera portada}	\\
+		\Huge\textbf{taller de \LaTeX}	\\
+		\LARGE{Yo mismo} \\
+	\vspace*{\fill}
+		
+	\vfill
+		
+	\Large{Profesor: No importa por ahora}
+\end{center}
+\end{titlepage}
+
+\begin{teo} Demuestre que si $1 \leq p \leq q \leq \infty$, entonces
+	$$\|x\|_{\ell^{q}} \leq \|x\|_{\ell^{p}}$$
+	
+En particular $\ell^{p} \subset \ell^{q}$.
+\end{teo}
+
+\begin{proof} El caso $q = \infty$ es claro:
+	$$\|x\|_{\ell^{\infty}} 
+		= 	\sup_{j \in \N} |x_{j}|
+		= 	\left(\sup_{j \in \N} |x_{j}|^{p}\right)^{1/p} 
+		\leq	\left(\sum_{j \in \N} |x_{j}|^{p}\right)^{1/p} = \|x\|_{\ell^{p}}
+	$$
+
+Además, si $p = q$ el resultado es directo. Consideremos entonces $1 \leq p < q < \infty$, tenemos que
+	\begin{align*}
+		\|x\|_{\ell^{q}}^{q}
+			&=		\sum_{j \in \N} |x_{j}|^{q}	\\
+			&=		\sum_{j \in \N} |x_{j}|^{p} |x_{j}|^{q-p}	\\
+			&\leq		\|x\|^{q-p}_{\ell^{\infty}} \sum_{j \in \N} |x_{j}|^{p}	\\
+			&=		\|x\|^{q-p}_{\ell^{\infty}} \|x\|_{\ell^{p}}^{p}	\\
+			&\leq		\|x\|^{q-p}_{\ell^{p}} \|x\|_{\ell^{p}}^{p}	\\
+			&=		\|x\|_{\ell^{p}}^{q}		 
+	\end{align*}
+
+De donde se obtiene el resultado.
+\end{proof}                                          
+
+% Ahora usaremos la función de muchos argumentos creada anteriormente para complementar la información del teorema. Usamos el nuevo entorno creado
+\begin{obst} Hemos visto que $x = \{x_{n}\}_{n \in \N}$ definida por
+	$$x_{n} = \twodef	{\frac{1}{n-1}} {n > 1}
+					{0}{n = 1}$$
+
+pertenece a $\ell^{2}$, por lo que por el teorema anterior, pertenece a $\ell^{q}$ para todo $q \geq 2$.
+\end{obst}
+\end{document}
+
