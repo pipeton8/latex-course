@@ -128,7 +128,7 @@
 % Para títulos %
 \newcommand{\dohead}{
 	\begin{minipage}{2.5cm}
-		\includegraphics[width=2.2cm]{/users/pipeton8/Library/texmf/tex/latex/logouc.jpg}
+		\includegraphics[width=2.2cm]{logouc.jpg}
 	\end{minipage}
 	\begin{minipage}{13 cm}
 		\begin{flushleft}
