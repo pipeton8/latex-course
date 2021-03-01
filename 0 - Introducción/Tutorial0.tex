@@ -1,37 +1,143 @@
-\documentclass[11pt]{beamer}
+%\documentclass[11pt]{beamer}
+\documentclass[11pt, handout]{beamer}
 
 %: Paquetes
 \usepackage{fontenc}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 
+%: Hyperrref setup
+\hypersetup{colorlinks=true,
+			allcolors=black,
+			urlcolor=blue}
+
 %: Tema
-\usetheme{Madrid}	
-\usecolortheme{seahorse}
+\usetheme{CambridgeUS}	
+\usecolortheme{beaver}
 \usefonttheme{professionalfonts}
 
+%: Beamer customization
+\beamertemplatenavigationsymbolsempty
+\setbeamercovered{transparent} 
+
 %: Argumentos para la portada
-\title{Primera presentación usando Beamer}
-\author{Taller de \LaTeX}
+\title{Introducción al taller de \LaTeX}
+\author{Felipe del Canto}
+\date{Marzo, 2021}
 
 %: Documento
 \begin{document}
 
 \frame{\titlepage}
 
-%: Índice
-\begin{frame}
-	\frametitle{Índice}
-	\tableofcontents
-\end{frame}
-
-\section{Opciones de frames}
-\begin{frame}
-	\frametitle{\secname}
+\begin{frame}{?`Qué es \LaTeX?}
 	
-	El frame por defecto tiene el texto alineado verticalmente al centro. Es equivalente a usar la opción \texttt{[c]} al comenzar el frame.
+	\begin{itemize}
+		\item {\LaTeX} es un compositor de texto, tal como Word.\pause
+		\vfill
+		
+		\item Sin embargo, en Word ``lo que escribes es lo que ves''.\pause
+		\vfill
+		
+		\item En \LaTeX, debemos escribir ``código'' y luego compilar.\smallskip
+			\begin{itemize}
+				\item Es decir, lo que escribimos no es igual al producto final.\footnote{Existe un programa llamado LyX en el cual se escribe lo que se ve, pero no lo recomiendo, sobre todo si desean compartir el documento con otros.}
+			\end{itemize}
+
+	\end{itemize}
 \end{frame}
 
+\begin{frame}{Entonces, ?`por qué \LaTeX?}
+	
+	\begin{itemize}
+		\item {\LaTeX} tiene muchas ventajas sobre Word para escribir textos formales.\smallskip
+			\begin{itemize}
+				\item Sobre todo artículos científicos.\pause
+			\end{itemize}
+		\vfill
+		
+		\item Algunas ventajas:\smallskip
+			\begin{itemize}
+				\item Formato automatizado (!`adiós fotos que se pierden!).\smallskip
+				\item Amplia personalización.\smallskip
+				\item Soporte para distintos idiomas.\smallskip
+				\item Facilidad para escribir texto matemático.\smallskip
+				\item Incorporación ``simple'' de bibliografía.
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{?`Cómo y dónde puedo usar \LaTeX?}
+	
+	\begin{itemize}
+		\item !`Se puede hacer en Windows, Mac y Linux!\pause
+		\vfill
+		
+		\item Para hacerlo se necesitan dos ingredientes:\smallskip
+			\begin{itemize}
+				\item Una ``distribución'' (básicamente hay que instalar {\LaTeX}).\smallskip
+				\item Un editor, que es donde se escribe el ``código'' y se compila.\pause
+			\end{itemize}
+		
+		\vfill
+		
+		\item Pueden obtener la ``distribución'' para su sistema operativo \href{https://www.latex-project.org/get}{aquí}.\smallskip
+			\begin{itemize}
+				\item Usuarios de Mac obtienen un editor automáticamente.\smallskip
+				\item Para Windows o Linux se recomiendan \href{https://www.xm1math.net/texmaker/download.html}{Texmaker} o \href{https://www.texstudio.org}{TeXstudio}.
+			\end{itemize}
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{?`Y si no quiero instalar cosas?}
+	
+	\begin{itemize}
+		\item Hay alternativas para trabajar online en \LaTeX.\pause
+		\vfill
+		
+		\item La más famosa es Overleaf (\href{http://overleaf.com}{link}).\smallskip
+			\begin{itemize}
+				\item Se puede colaborar con otras personas (máximo 1 gratis).\smallskip
+				\item Se puede sincronizar con Dropbox (solo la versión pagada).\smallskip
+				\item Se puede sincronizar con Github.\smallskip
+				\item Revisa automáticamente errores de código.\pause
+			\end{itemize}
+		\vfill
+			
+		\item Existe también Papeeria (\href{https://papeeria.com}{link}).
+			\begin{itemize}
+				\item Es muy similar a Overleaf pero sin pagar por las funcionalidades.
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Pero no siempre llevo el computador a la U \ldots}
+	
+	\begin{itemize}
+		\item Por si fuera poco !`podemos usar {\LaTeX} en iOS o Android!\pause
+		\vfill
+		
+		\item Alternativas en iOS (en orden de mi preferencia):\smallskip
+			\begin{enumerate}
+				\item LaTeX Editor Tex Pro (\href{https://apps.apple.com/cl/app/latex-editor-tex-pro/id1486802741?l=en}{link}).\smallskip
+				\item TeX Writer (\href{https://apps.apple.com/cl/app/tex-writer-latex-on-the-go/id552717222?l=en}{link}).\smallskip
+				\item Texpad (\href{https://apps.apple.com/cl/app/texpad-latex-editor/id550419159?l=en}{link}).\smallskip
+				\item VerbTeX (\href{https://apps.apple.com/cl/app/verbtex-latex-editor/id560869163?l=en}{link}).\pause
+			\end{enumerate}
+		\vfill
+			
+		\item Alternativas en Android (sin order particular):\smallskip
+			\begin{enumerate}
+				\item VerbTeX (\href{https://play.google.com/store/apps/details?id=verbosus.verbtexpro}{link}).\smallskip
+				\item TeX Writer (\href{https://play.google.com/store/apps/details?id=com.litchie.texwriter}{link}).\pause
+			\end{enumerate}
+		\vfill
+		
+		\item También se puede usar Overleaf y Papeeria (menos recomendable). 
+		
+	\end{itemize}
+\end{frame}
 
 \end{document}
 

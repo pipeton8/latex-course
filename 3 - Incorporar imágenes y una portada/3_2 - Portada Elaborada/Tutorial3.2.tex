@@ -11,14 +11,9 @@
 % encargado de lidiar con ellas
 \usepackage{graphicx}
 
-% Márgenes %
-\oddsidemargin = 0.3 cm
-\textwidth = 17 cm
-\textheight = 24 cm
-\headsep = 0.8 cm
-\hoffset = -1 cm
-\voffset = -2 cm
-\spacing{1.4}
+% Márgenes y espaciado %
+\usepackage[margin=2cm]{geometry}
+\spacing{1.2}
 
 % Entornos %
 \newtheorem{teo}{Teorema}
@@ -30,14 +25,17 @@
 % Seguiremos usando el entorno titlepage, pero distribuiremos los elementos de portada 
 % según como nos plazca
 \begin{titlepage}
-% Esto permite	ubicar correctamente la imagen, separada del texto que la sigue, para que
+
+% Este entorno minipage permite ubicar correctamente la imagen, separada del texto que la sigue, para que
 % podamos controlar su tamaño independiente del texto
 	\begin{minipage}{2.5cm}
 		\includegraphics[width=2cm]{logouccolor.png}
 	\end{minipage}
+	
 % Por su parte, esta minipage controla el texto que está al lado de la imagen, para controlar
 % su tamaño y ubicación respecto a la imagen de manera más simple
 	\begin{minipage}{13 cm}
+	
 	% El siguiente entorno alinea el texto a la izquierda (flushright lo alinea a la derecha)
 		\begin{flushleft}
    			\noindent\large{\sc
@@ -59,7 +57,7 @@
 		
 	\vfill % Este comando asegura que el siguiente texto queda en el final de la página
 		
-	\Large{Profesor: No importa por ahora}
+	\Large{Profesor: Felipe del Canto}
 
 \end{center}
 \end{titlepage}

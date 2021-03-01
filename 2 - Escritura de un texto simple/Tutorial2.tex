@@ -10,23 +10,15 @@
 % cambiar los márgenes y para eso usamos el siguiente paquete:
 \usepackage{setspace}
 
-% Los márgenes de la página se ajustan de esta manera (los números están dados
-% y pueden jugar con ellos si quieren para ver que hacen):
-\oddsidemargin = 0.3 cm
-\textwidth = 17 cm
-\textheight = 24 cm
-\headsep = 0.8 cm
-\hoffset = -1 cm
-\voffset = -2 cm
-\spacing{1.4}
+% Los márgenes de la página se ajustan fácilmente usando el paquete geometry.
+% El tamaño ``2cm'' puede ajustarse y también puede cambiar de unidades (in en lugar de cm, por ejemplo).
+\usepackage[margin=2cm]{geometry}
 
-% Ahora, si vemos el texto, podemos notar que todo el teorema tiene la letra
-% en itálicas (o cursiva), a diferencia del texto de la demostración
-% Esto es porque el teorema se encuentra dentro de un ``entorno''
-% Los entornos permiten escribir partes del texto de una manera particular
-% y con ciertas configuraciones. En este caso, el entorno en el que se
-% encuentra el teorema, escribe el texto en cursiva y enumera el teorema.
-% Para crear un entorno de teorema nuevo escribimos:
+% El interlineado se ajusta con el comando spacing. El valor 1.2 usualmente queda bien, pero
+% pueden jugar con otros valores.
+\spacing{1.2}
+
+% Ahora, si vemos el texto, podemos notar que todo el teorema tiene la letra en itálicas (o cursiva), a diferencia del texto de la demostración. Esto es porque el teorema se encuentra dentro de un ``entorno''. Los entornos permiten escribir partes del texto de una manera particular y con ciertas configuraciones. En este caso, el entorno en el que se encuentra el teorema, escribe el texto en cursiva y enumera el teorema. Para crear un entorno de teorema nuevo escribimos:
 \newtheorem{teo}{Teorema}
 
 % Esto genera un entorno de teorema, cuyo título es teorema y se abrevia teo.
@@ -61,8 +53,8 @@ En particular $\ell^{p} \subset \ell^{q}$.
 % y el símbolo (por defecto un cuadrado blanco) al final. Se llama igual que todos los entornos:
 \begin{proof} El caso $q = \infty$ es claro:
 
-% LaTeX es tonto con los paréntesis. No sabe detectar automáticamente cuando algo es
-% demasiado grande para los paréntesis. Para ello usamos \left y \right. Estos comandos
+% LaTeX es un poco tonto con los paréntesis. No sabe detectar automáticamente cuando algo es
+% demasiado grande como para agrandar los paréntesis. Para ello usamos \left y \right. Estos comandos
 % sirven para ajustar los paréntesis de cualquier tipo al tamaño de lo que contienen 
 	$$\|x\|_{\ell^{\infty}} 
 		= 	\sup_{j \in \mathbb{N}} |x_{j}|

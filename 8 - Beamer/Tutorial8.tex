@@ -1,9 +1,16 @@
-% Hoy crearemos nuestra primera presentación en Beamer
-\documentclass[11pt]{beamer}	% Aquí llamamos la clase beamer, podríamos crear nuestra propia clase, con opciones y otras cosas para hacerlo más inteligente
+% En esta parte crearemos nuestra primera presentación en Beamer
+
+\documentclass[11pt]{beamer}	% Aquí llamamos a la clase beamer. Siempre podríamos crear nuestra propia clase, con opciones y otras cosas para hacerlo más inteligente.
 
 % Paquetes %
 % Los paquetes se llaman como a cualquier documento LaTeX, porque básicamente estamos escribiendo un texto de LaTeX
-\usepackage{tutorialLaTeX}	% Incluso, como es de esperar, podemos incorporar nuestro propio paquete (por esto tiene sentido no incorporar las configuraciones propias de una clase dentro de un paquete)
+\usepackage[utf8]{inputenc} 
+\usepackage[spanish]{babel}
+\usepackage{mathtools, amsfonts, amsmath, amsthm, amssymb}
+\usepackage{setspace}
+
+% Beamer tiene precargado el paquete hyperref, por lo que incluiremos las opciones con el comando ``hypersetup''
+\hypersetup{colorlinks, allcolors=blue}
 
 % Para beamer, tenemos que seleccionar un cierto ``tema'', que corresponde a la apariencia de la presentación. Opcionalmente podemos determinar el tipo de letra, el color y la forma en que enumerate e itemize se ven
 % Pueden revisar los colores y temas en forma matricial en el siguiente link:
@@ -12,7 +19,9 @@
 % Los diferentes tipos de letra (los temas y colores también, pero más desordenados) están en
 % http://deic.uab.es/~iblanes/beamer_gallery/individual/Boadilla-default-default.html
 
-% Para definir el tema y el color y el tipo de letra, usamos la siguiente sintaxis
+% Alternativamente, pueden buscar en internet otros temas e instalarlos manualmente.
+
+% Para definir el tema, el color y el tipo de letra, usamos la siguiente sintaxis
 \usetheme{Madrid}	
 \usecolortheme{seahorse}
 \usefonttheme{professionalfonts}	% Con este tipo de letra quedan mejor las fórmulas de LaTeX 
@@ -28,8 +37,7 @@
 % Portada %
 \frame{\titlepage}
 
-% La unidad básica de beamer es el ``frame''.
-% Cada nuevo frame se llama usando la siguiente sintaxis:
+% La unidad básica de beamer es el ``frame''. Cada nuevo frame se llama usando la siguiente sintaxis:
 %	\begin{frame}[Opciones]
 %		\frametitle{Título del frame}	
 %		Material del frame
@@ -40,10 +48,9 @@
 %	- ``plain'', que elimina el encabezado, el pie y las barras laterales (si hay). Este último es especialmente útil si queremos incluir una imagen de tamaño grande, que se vería extraña si se enmarca con esos elementos.
 %	- ``squeeze'', que comprime todo lo posible los espacios verticales.
 
-% Vale decir que no siempre un ``frame'' es una página del PDF que sale, pero lo veremos más adelante.
+% Vale decir que no siempre un ``frame'' es una página del PDF que sale, pero eso lo veremos más adelante.
 
 % Nuestro primer frame será el índice:
-%	Índice	%
 \begin{frame}
 	\frametitle{Índice}
 	\tableofcontents
@@ -86,13 +93,14 @@
 
 % Entorno Block %
 \section{Entorno Block}
-% A continuación veremos uno de los entornos más usados en Beamer, el entorno Block que, como su nombre lo dice,
-% encierra en ``bloques'' el texto
+
+% A continuación veremos uno de los entornos más usados en Beamer, el entorno Block que, como su nombre lo dice, encierra en ``bloques'' el texto
 \begin{frame}
 	\frametitle{\secname}
 	
 	% Comenzamos llamando al entorno
 	\begin{block}{Primer bloque con título}	% Con esto le ponemos título
+	
 	% Dentro de cualquier frame, podemos incorporar nuestros conocidos entornos enumerate e itemize:
 	\begin{itemize}
 		\item Podemos escribir esto.
@@ -101,7 +109,7 @@
 	\end{itemize}
 	
 	E incluso podemos escribir \alert{fuera del entorno itemize}.	% \alert es un comando especial de beamer, que escribe en rojo para enfatizar 
-	\end{block}
+	\end{block} \vfill % el uso de \vfill ayuda a que la diapositiva se distribuya de mejor manera en dirección vertical. Si no nos gusta cómo queda podemos usar \vspace{medida} donde medida es una medida con unidades, como por ejemplo ``1cm''.
 	
 	Pero también podemos poner bloques sin título:
 	
@@ -116,12 +124,18 @@
 	Podemos también incorporar bloques con significado, que cambian de color. Para ello tenemos dos entornos, el entorno \texttt{alertblock}:
 		\begin{alertblock}{Puede llevar título}
 			y el color del bloque es rojo
-		\end{alertblock}
+		\end{alertblock} \vfill
 	
 	Y también tenemos el entorno \texttt{exampleblock}:
 		\begin{exampleblock}{Que también puede llevar título}
 			y es de color verde
 		\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\secname}
+	
+	Existen otras maneras de incorporar colores a los bloques, redefiniendo los colores de \texttt{block body} y \texttt{block title}. Pueden ver un ejemplo de cómo implementarlo en \href{https://tex.stackexchange.com/questions/33231/how-to-change-the-color-of-a-block-within-a-custom-beamer-sty-theme-file}{este link}.
 \end{frame}
 
 % Animaciones %
@@ -132,7 +146,7 @@
 \begin{frame}
 	\frametitle{\secname : \subsecname}
 	
-	% El comando más simple para animar es ``pause'', el cual genera una diapositiva adicional por cada vez que aparece y que corta la diapositiva justo en donde se le llama
+	% El comando más simple para animar es ``pause'', el cual genera una diapositiva adicional por cada vez que aparece y que corta la diapositiva justo en donde se le llama. En el PDF lo que veremos son distintas páginas, que al avanzar entregan la ilusión de animar la presentación.
 	\begin{block}{Mostrando el comando \texttt{pause}}
 	\begin{enumerate}
 		\item En la primera diapositiva solo se ve este elemento.	\pause
@@ -147,10 +161,12 @@
 		
 	Pero también es posible que los demás elementos \alert{sí} se vean, usando el comando \texttt{\textbackslash setbeamercovered\{Opción\}}. Este puede llamarse en el preámbulo (si queremos un comportamiento general) o en algún frame en particular (si queremos un comportamiento local). Las opciones son:
 		\begin{itemize}
-			\item \texttt{invisible}: Se encuentra por defecto y deja los demás elementos invisibles.
-			\item \texttt{trasnparent}: El texto se ve casi transparente. Podemos variar la opacidad con el comando \texttt{transparent = X}, con $0 \leq \texttt{X} \leq 100$.
+			\item \texttt{invisible}: Se usa por defecto y deja los demás elementos invisibles.\smallskip
+			\item \texttt{transparent}: El texto se ve casi transparente. Podemos variar la opacidad con el comando \texttt{transparent = X}, con $0 \leq \texttt{X} \leq 100$.\smallskip
 			\item \texttt{dynamic}: A medida que pasa el tiempo, el texto no descubierto varía su grado de visibilidad.		
 		\end{itemize}
+		
+		% A mí me gusta usar \smallskip después de cada elemento de itemize para que la distribución vertical sea más bonita.
 \end{frame}
 
 \begin{frame}
@@ -173,7 +189,7 @@
 \begin{frame}
 	\frametitle{\secname : \subsecname}
 	
-	Para los comandos que veremos a continuación, es posible asignar rangos, para que los elementos se muestren en el orden que nosotros queremos, eliminando la limitación del comando \texttt{\textbackslash pause}.
+	Para los comandos que veremos a continuación, es posible asignar rangos, para que los elementos se muestren en el orden que nosotros queremos, eliminando la limitación del comando \texttt{\textbackslash pause}.\vfill
 	
 	\begin{block}{Sintaxis}
 		La sintaxis para este tipo de comandos es \texttt{\textbackslash Comando<Rango>\{Contenido\}},  donde \texttt{Rango} especifica en qué pasos de la animación se tiene el efecto, por ejemplo:
@@ -181,7 +197,7 @@
 				\item \texttt{2-} $\rightarrow$ Del paso 2 en adelante.
 				\item \texttt{-3} $\rightarrow$ Hasta el paso 3 (inclusive).
 				\item \texttt{2-5} $\rightarrow$ Del paso 2 al 5 (ambos inclusive).
-				\item \texttt{1-3,5} $\rightarrow$ Del paso1 al 3 y en el 5.
+				\item \texttt{1-3,5} $\rightarrow$ Del paso 1 al 3 y en el 5.
 			\end{itemize}
 	\end{block}
 \end{frame}
@@ -191,7 +207,7 @@
 \begin{frame}
 	\frametitle{\secname : \subsecname}
 	
-	Este comando determina el orden de los elementos, pero hace que estos \alert{sigan ocupando espacio}. Por ejemplo
+	Este comando determina el orden de los elementos, pero hace que estos \alert{sigan ocupando espacio}. Por ejemplo:
 	
 	\begin{block}
 		\onslide<1->{Este texto se muestra desde el primer paso}	\\
@@ -258,7 +274,7 @@
 			\item Segundo item.
 			\item Tercer item.
 		\end{itemize}
-		\end{block}
+		\end{block}\vfill
 	
 	También es posible este efecto en el uso de rangos, con \texttt{\textbackslash alert<Rango>\{Texto\}}.
 \end{frame}
@@ -273,7 +289,7 @@
 			\item \texttt{only}: el mismo que vimos antes.
 			\item \texttt{visible}: Texto invisible si no es mostrado.
 		\end{itemize}
-	\end{block}
+	\end{block}\vfill
 	
 	Por ejemplo
 		\begin{itemize}[<+- | only@+>]
@@ -294,7 +310,7 @@
 			\item \texttt{\textbackslash color<Rango>\{Color\}} (o \texttt{\textbackslash textcolor<Rango>\{Color\}\{Texto\}})
 			\item \texttt{\textbackslash includegraphics<Rango>[Opciones]\{archivo\}}
 		\end{itemize}
-	\end{block}
+	\end{block}\vfill
 	
 	Como por ejemplo
 		\begin{itemize}

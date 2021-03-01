@@ -2,23 +2,20 @@
 \documentclass{article}
 
 % Paquetes %
-\usepackage{setspace}
 \usepackage{tutorialLaTeX}	% Incorporamos nuestro nuevo paquete con la sintaxis de paquetes usual.
 
-% Márgenes %
-\oddsidemargin = 0.3 cm
-\textwidth = 17 cm
-\textheight = 24 cm
-\headsep = 0.8 cm
-\hoffset = -1 cm
-\voffset = -2 cm
-\spacing{1.4}
+% Gracias a la creación del paquete tutorialLaTeX ya no tenemos un preámbulo muy largo.
+
+% Márgenes y espaciado %
+\usepackage[margin=2cm]{geometry}
+\spacing{1.2}
 
 % Está un poco mejor, pero no tanto. Todavía molestan los márgenes y el texto de la portada aún ocupa mucho espacio. Eso lo mejoraremos con una clase.
 
 % Documento %
 \begin{document}
 
+%: Portada
 \begin{titlepage}
 	\begin{minipage}{2.5cm}
 		\includegraphics[width=2cm]{logouccolor.png}

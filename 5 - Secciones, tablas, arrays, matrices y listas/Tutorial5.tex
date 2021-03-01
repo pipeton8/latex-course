@@ -1,4 +1,4 @@
-% Comencemos un código nuevo para trabajar con los nuevos elementos. Aquí necesitaremos algunos paquetes nuevo y otros los dejaremos ir. Tampoco necesitaremos entornos
+% Comencemos un código nuevo para trabajar con los nuevos elementos. Aquí necesitaremos algunos paquetes nuevos y otros los dejaremos ir. Tampoco necesitaremos entornos
 \documentclass{article}
 
 % Paquetes %
@@ -10,14 +10,9 @@
 % Para este tutorial usaremos el siguiente paquete:
 \usepackage{enumerate}
 
-% Márgenes %
-\oddsidemargin = 0.3 cm
-\textwidth = 17 cm
-\textheight = 24 cm
-\headsep = 0.8 cm
-\hoffset = -1 cm
-\voffset = -2 cm
-\spacing{1.4}
+% Márgenes y espaciado %
+\usepackage[margin=2cm]{geometry}
+\spacing{1.2}
 
 % Documento %
 \begin{document}
@@ -39,7 +34,7 @@ Hagamos una tabla que resuma lo que hemos aprendido hasta ahora:
 % 	2) determinar en cada columna si el texto va centrado, alineado a la izquierda o a la derecha
 % Para esto, para cada columna escribimos c, si queremos el texto centrado, l si lo queremos a la izquierda o r si lo queremos a la derecha.
 % Dentro de la tabla, usamos & para cambiar de columna y \\ para pasar a la fila siguiente luego de escribir todas las columnas. LaTeX tirará un error si no hay suficientes & como para hacer sentido a la cantidad de columnas. 
-% Si además queremos separadores, entre cada letra incorporamos |, para una separación simple o || para una separación doble. Además, si queremos una linea horizontal, debemos, justo después de \\ incluir \hline.
+% Si además queremos separadores, entre cada letra incorporamos |, para una separación simple o || para una separación doble. Además, si queremos una linea horizontal, debemos incluir \hline justo después de \\.
 	\begin{center}	% Las tablas no están centradas por defecto, así que lo forzamos con este entorno
 	\begin{tabular}{c | c | c}
 		Tutorial	&	Título								&	Contenidos	\\ \hline
@@ -76,7 +71,7 @@ La numeración es por defecto, con números arábigos seguidos por un punto. Pod
 		\item Segundo elemento de la lista numerada.		
 	\end{enumerate}
 
-O también
+O también,
 	\begin{enumerate}[a)]
 		\item Primer elemento de la lista numerada.
 		\item Segundo elemento de la lista numerada.		
@@ -88,19 +83,19 @@ Podemos crear otras variaciones, como que los ``números'' queden en cursiva o n
 		\item Segundo elemento de la lista numerada.		
 	\end{enumerate}
 
-O
+O incluso,
 	\begin{enumerate}[\bf a)]
 		\item Primer elemento de la lista numerada.
 		\item Segundo elemento de la lista numerada.		
 	\end{enumerate}
 
-Finalmente, podemos crear numeraciones más complejas, como en el siguiente ejemplo:
+Finalmente, usando el paquete \texttt{enumerate} podemos crear numeraciones más complejas, como en el siguiente ejemplo:
 	\begin{enumerate}[\bf {Paso} 1)]
 		\item Primer elemento de la lista numerada.
 		\item Segundo elemento de la lista numerada.		
 	\end{enumerate}
 
-Observar que escribimos ``Paso'' entre \{ \} pues de esta forma, \textit{enumerate} entiende que aquello no debe usarse para enumerar.
+Observar que en el código escribimos ``Paso'' entre \{ \} pues de esta forma, \texttt{enumerate} entiende que aquello no debe usarse para enumerar.
 
 \subsection*{Listas no numeradas}
 Ahora, revisemos las listas no numeradas. El entorno a utilizar es \textit{itemize}:

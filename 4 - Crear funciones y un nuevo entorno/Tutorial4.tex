@@ -8,34 +8,27 @@
 \usepackage{setspace}
 \usepackage{graphicx}
 
-% Márgenes %
-\oddsidemargin = 0.3 cm
-\textwidth = 17 cm
-\textheight = 24 cm
-\headsep = 0.8 cm
-\hoffset = -1 cm
-\voffset = -2 cm
-\spacing{1.4}
+% Márgenes y espaciado %
+\usepackage[margin=2cm]{geometry}
+\spacing{1.2}
 
-% Hay veces que escribir demasiadas veces un comando largo puede ser tedioso y además puede ser lento hacerlo. Por ejemplo, para escribir los números naturales, escribir \mathbb{N} toma tiempo, sobre todo si uno se equivoca. Para ello nos gustaría escribir una función, que se llame de manera más corta. La forma de crear funciones es la siguiente
- %	\newcommand{\nuevonombre}{que hace la funcion}
+% Hay veces que escribir demasiadas veces un comando largo puede ser tedioso y además puede ser lento hacerlo. Por ejemplo, para escribir los números reales, escribir \mathbb{N} toma tiempo, sobre todo si uno se equivoca. Para ello nos gustaría escribir una función, que se llame de manera más corta. La forma de crear funciones es la siguiente
+%	\newcommand{\nuevonombre}{que hace la funcion}
  
 % En el caso del ejemplo de \mathbb{N} podemos crear la siguiente función
 \newcommand{\N}{\mathbb{N}}
 
-% Ahora, cada vez que escribamos \N, LaTeX entiende que estamos escribiendo \mathbb{N}. Observar que es como abreviar, por lo que necesitamos estar en modo matemático para usar esta función
+% Ahora, cada vez que escribamos \N, LaTeX entiende que estamos escribiendo \mathbb{N}. Observar que es como que abreviáramos la escritura, por lo que sigue siendo necesario estar en modo matemático para usar esta función.
 
 % También es posible crear funciones que acepten argumentos, para crearlas se usa el siguiente formato
 %	\newcommand{\nombrefuncion}[numerodeargumentos]{que hace la función}
 
-% En la parte ``que hace la función'', podemos referenciar los argumentos por ``#n'', donde n es el número de argumento. Veamos el siguiente ejemplo:
+% En la parte donde definimos que hace la función podemos referenciar los argumentos por ``#n'', donde n es el número de argumento. Veamos el siguiente ejemplo:
 \newcommand{\twodef}[4]{\left\{ \begin{aligned}
 						&#1	&&\text{si } #2	\\
 						&#3	&&\text{si } #4
 					\end{aligned} \right. }
 
-% Vale la pena notar que el entorno aligned es equivalente al align, pero este nuevo entorno puede combinarse en modo matemático (es decir, para cosas entre $$) de manera que se pueda complementar con más texto.
-					
 % Esta función permite escribir funciones de dos ramas. Como podemos ver, recibe 4 argumentos, el primero es la primera rama de la función, el segundo, la condición de esa rama. El tercero y el cuarto se definen de manera similar. Para llamar a esta función en el texto tendremos que escribir
 %	\twodef{primera rama}{condicion primera rama}{segunda rama}{condicion segunda rama}
 
@@ -45,6 +38,8 @@
 
 % Esta manera de escribir imita lo que uno ve en el resultado y tiene una lectura mucho mejor. 
 
+% Vale la pena notar que el entorno aligned es equivalente al align, pero este nuevo entorno puede combinarse en modo matemático (es decir, para cosas entre $$) de manera que se pueda complementar con más texto.
+					
 % Entornos %
 \newtheorem{teo}{Teorema}
 

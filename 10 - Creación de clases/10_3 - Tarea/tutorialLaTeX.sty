@@ -1,22 +1,26 @@
-% Como lo comentamos la sesión pasada, los preámbulos pueden ponerse cada vez más complejos y largos, lo que puede ser tedioso. Además, podría ser que tuvieramos funciones diferentes repartidas por muchos archivos y, al momento de querer usarlas, tendríamos que bucear para encontrarlas. Para ello podría ser útil crear un paquete propio que guarde las funciones que más usamos y otras que se nos haya ocurrido crear por nuestra cuenta.
+% Cuando se trabaja largo tiempo con LaTeX en documentos relativamente similares como trabajos, ayudantías o apuntes, los preámbulos pueden ponerse cada vez más complejos y largos. Eso puede ser muy molesto porque para llegar al documento hay que bajar mucho en la pantalla del editor. Además, podría ser que tuviéramos funciones diferentes repartidas por muchos archivos y, al momento de querer usarlas, tendríamos que bucear para encontrarlas. Para ello podría ser útil crear un paquete propio que guarde las funciones que más usamos y otras que se nos haya ocurrido crear por nuestra cuenta.
 
-% De lo anterior se desprende que en un paquete podemos incluir TODO lo que se llamaba en el preámbulo, desde otros paquetes hasta entornos, funciones, edición de los márgenes de una página, etc. Para efectos de ser buenos programadores, recordemos que un paquete, puede usarse para varias clases de documento, por lo que no querríamos incluir en un paquete, ciertos elementos que son más naturales incluirlos en una clase (por ejemplo, un tipo de letra particular o cierto tamaño de los márgenes)
+% En el mejor de los casos, un paquete puede incluir TODO lo que se llamaba en el preámbulo, desde otros paquetes hasta entornos, funciones, edición de los márgenes de una página, etc. Para efectos de ser buenos programadores, recordemos que un paquete puede usarse para varias clases de documento, por lo que no querríamos incluir ciertos elementos que son más naturales del tipo de documento y no del uso. Por ejemplo, un tipo de letra particular o cierto tamaño de los márgenes.
 
-\NeedsTeXFormat{LaTeX2e}	% Indica que versión de LaTeX se está usando. Por ahora, la más nueva es la 2e, así que esa se utiliza
-\ProvidesPackage{tutorialLaTeX}		% Este será el nombre del paquete. Es importante que el nombre del paquete coincida con el nombre del archivo
+% Este primer comando indica qué versión de LaTeX se está usando. Por ahora, la más nueva es la 2e.
+\NeedsTeXFormat{LaTeX2e}
 
-% En un paquete, cuando queramos utilizar otros paquetes dentro, no usamos la usual sintaxis:
+% El siguiente comando corresponde al nombre del paquete. Es necesario que el nombre del paquete coincida con el nombre del archivo
+\ProvidesPackage{tutorialLaTeX}
+
+% En un paquete, cuando se desean utilizar otros paquetes dentro, no usamos la usual sintaxis:
 %	\usepackage{nombrepaqute}
 %
 % sino que reemplazamos \usepackage por
 %	\RequirePackage
 %
-% Si el paquete que queremos utilizar necesitaba una opción, entonces se utiliza la sintaxis usual. Sin embargo,
-% cuando creamos paquetes en LaTeX, tenemos la posibilidad de incluir TODAS las opciones de un paquete dado
-% para ello usamos
+
+% Si el paquete que queremos utilizar necesitaba una opción, entonces se utiliza la sintaxis usual. Sin embargo, cuando creamos paquetes en LaTeX, tenemos la posibilidad de incluir TODAS las opciones de un paquete dado para ello usamos
 % 	\RequirePackageWithOptions
 %
-% lo que carga todos las opciones del paquete
+% lo que carga todos las opciones del paquete. Ojo con esto, porque algunos paquetes pueden generar un error si se cargan todas las opciones.
+
+% En lo que sigue se incorporan muchos paquetes y se crean algunos comandos útiles para ustedes.
 
 %: Tipo de letra y codificación %
 \RequirePackageWithOptions{hyperref}

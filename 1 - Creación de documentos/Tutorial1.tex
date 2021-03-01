@@ -16,29 +16,26 @@
 % La mayoría de los paquetes importantes requieren opciones, pero como veremos más adelante no siempre es así.
 
 % Agregamos ahora los paquetes:
-\usepackage[utf8]{inputenc} % Este paquete en particular maneja la codificación del texto. Para efectos prácticos permite usar acentos en el texto.
+\usepackage[utf8]{inputenc} % Este paquete en particular maneja la codificación del texto. Para una mejor compatibilidad del archivo con diferentes usuarios se recomienda usar UTF-8 con la opción ``utf8''. Para efectos prácticos permite usar acentos en el texto.
 
-\usepackage[spanish]{babel} % Este paquete se encarga del idioma, así las demostraciones dicen ``Demostración'' y no ``Proof''.
+\usepackage[spanish]{babel} % Este paquete se encarga del idioma. En nuestro caso usamos español con la opción ``spanish'', también se pueden cargar otros idiomas. En la práctica, con este paquete, por ejemplo, las demostraciones dirán ``Demostración'' y no ``Proof''.
 
 \usepackage{mathtools, amsfonts, amsmath, amsthm, amssymb} % Múltiples paquetes para cosas matemáticas.
 
 % Por ahora usaremos solo estos paquetes.
 
-% Hasta ahora no hemos escrito nada del documento, todo lo que hemos escrito hasta ahora se llama ``Preámbulo'' 
-% y es una de las estructuras centrales de un documento de LaTeX. El preámbulo también incorpora otros elementos,
-% como los márgenes de la página o 
-% Evidentemente, a medida que los textos se complejizan, la cantidad de paquetes que se necesitan crece bastante.
-% Es por esto que a veces es conveniente crear paquetes propios, que resuman lo más posible el preámbulo (por ejemplo,
-% yo tengo mi paquete ``felipito'').
+% Hasta ahora no hemos escrito nada del documento, todo lo que hemos escrito hasta ahora se llama ``Preámbulo'' y es una de las estructuras centrales de un documento de LaTeX. El preámbulo también incorpora otros elementos, como los márgenes de la página y otras cosas que aprenderemos más adelante.
+% Evidentemente, a medida que los textos se complejizan, la cantidad de paquetes que se necesitan crece bastante. Es por esto que a veces es conveniente crear paquetes propios, que resuman lo más posible el preámbulo (por ejemplo, yo tengo mi paquete llamado ``felipito'').
 
-% Ahora queremos escribir algo. Partiremos con algo similar a ``Hola mundo''
+% Ahora nos gustaría escribir algo. Partiremos con algo muy simple. 
+
 % Para comenzar a escribir el texto, después del preámbulo le avisamos a LaTeX que empezaremos, escribiendo:
 \begin{document}
 
 % Ahora escribimos el texto
-!`Hola a todos! ?`cómo están? Así de fácil es escribir en \LaTeX
+!`Hola a todos! ?`cómo están? Así de fácil es escribir en \LaTeX.
 
 % Finalmente, después de la última linea que escribamos, avisamos que terminamos escribiendo
 \end{document}
 
-% Ahora estamos listos para ``compilar'', es decir, para transformar este código en un PDF.
+% Ahora estamos listos para ``compilar'', es decir, para transformar este código en un PDF. Para eso en nuestro editor debemos apretar ``Typeset'' o ``Compile'', como sea que aparezca en nuestro editor.
